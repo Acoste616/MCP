@@ -14,6 +14,7 @@ from sqlmodel import select # For health check DB query
 from starlette.staticfiles import StaticFiles # Added
 
 from app.api import auth, products, users, orders
+from app.routers import mcp_routes # Added for MCP
 from app.core.config import settings
 # from app.core.database import init_db # Keep init_db for potential initial data seeding
 from app.middleware.security_headers import SecurityHeadersMiddleware
@@ -93,6 +94,7 @@ app.include_router(auth.router, prefix=f"{settings.API_V1_STR}/auth", tags=["Aut
 app.include_router(users.router, prefix=f"{settings.API_V1_STR}/users", tags=["Users"])
 app.include_router(products.router, prefix=f"{settings.API_V1_STR}/products", tags=["Products"])
 app.include_router(orders.router, prefix=f"{settings.API_V1_STR}/orders", tags=["Orders"])
+app.include_router(mcp_routes.router) # MCP routes are already prefixed with /mcp
 # Add other routers here (e.g., orders) as they are created
 
 @app.get(f"{settings.API_V1_STR}/health", tags=["Health Check"])

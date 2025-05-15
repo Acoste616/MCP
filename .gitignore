@@ -42,6 +42,4 @@ ENV/
 *.sqlite3
 
 # Static files / Uploads
-static/
-
-# Logs 
+static/ 
